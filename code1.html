@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Portfolio" name="or2xe2tp">
+  <meta name="msapplication-tap-highlight" content="no">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon.png">
+  <link href="./assets/images/favicon.png" rel="icon">
+
+  <title>CS Projects</title>
+
+<link href="./main.3f6952e4.css" rel="stylesheet"></head>
+
+<body class="minimal">
+<div id="site-border-left"></div>
+<div id="site-border-right"></div>
+<div id="site-border-top"></div>
+<div id="site-border-bottom"></div>
+<header>
+  <nav class="navbar  navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav ">
+          <li><a href="./index.html" title="">001 : Home</a></li>
+          <li><a href="./cswork.html" title="">002 : Programming Projects</a></li>
+          <li><a href="./img.html" title="">003 : Photography<a></li>
+          <li><a href="./arch.html" title="">004 : Art and Architecture</a></li>
+          <li><a href="./contact.html" title="">005 : Contact</a></li>
+        </ul>
+
+
+      </div> 
+    </div>
+  </nav>
+  <body style="background-color:black;">
+      <div class="section-container">
+        
+        <!-- Add your site or app content here -->
+          <div class="container">
+            <h3 style="color: aqua;">
+                programming_file/python/only.py
+            </h3>
+                <div class="template-example">
+                    <div class="form-group">
+                      <code class="form-control">
+                        <pre>
+
+                        
+
+
+                        import requests
+                        from lxml import html
+                        import re
+                        import sys
+                        import pprint
+                        from profilepic import pp_download
+                        
+                        def banner():
+                            print('\t""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""')
+                            print('\t                         InstgramProfile data graber                    ')
+                            print('\t""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""')
+                        
+                        
+                        def main(username):
+                            banner()
+                            '''main function accept instagram username
+                            return an dictionary object containging profile deatils
+                            '''
+                        
+                            url = "https://www.instagram.com/{}/?hl=en".format(username)
+                            page = requests.get(url)
+                            tree = html.fromstring(page.content)
+                            data = tree.xpath('//meta[starts-with(@name,"description")]/@content')
+                        
+                            if data:
+                                data = tree.xpath('//meta[starts-with(@name,"description")]/@content')
+                                data = data[0].split(', ')
+                                followers = data[0][:-9].strip()
+                                following = data[1][:-9].strip()
+                                posts = re.findall(r'\d+[,]*', data[2])[0]
+                                name = re.findall(r'name":"([^"]+)"', page.text)[0]
+                                aboutinfo = re.findall(r'"description":"([^"]+)"', page.text)[0]
+                                instagram_profile = {
+                                    'success': True,
+                                    'profile': {
+                                        'name': name,
+                                        'profileurl': url,
+                                        'username': username,
+                                        'followers': followers,
+                                        'following': following,
+                                        'posts': posts,
+                                        'aboutinfo': aboutinfo
+                                    }
+                                }
+                            else:
+                                instagram_profile = {
+                                    'success': False,
+                                    'profile': {}
+                                }
+                            return instagram_profile
+                        
+                        
+                        #  python main.py username
+                        if __name__ == "__main__":
+                        
+                            if len(sys.argv) == 2:
+                                output = main(sys.argv[-1])
+                                pp_download(sys.argv[-1])
+                                pprint.pprint(output)
+                                
+                            else:
+                                print('Invalid paramaters Valid Command \n\tUsage : python main.py username')</pre>
+                      </code>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+       navActivePage();
+    });
+  </script>
+ <script type="text/javascript" src="./main.70a66962.js"></script></body>
+  
+  </html>
